@@ -23,3 +23,12 @@ function cmt_change_logo() {
   CMT_Customize_Login_Screen::init();
 }
 add_action("login_enqueue_scripts", "cmt_change_logo");
+
+/**
+ * Remove WP admin bar for subscriber.
+ */
+function cmt_removeAdminBarForSubscriber() {
+  require_once("includes/cmt-remove-admin-bar.php");
+  CMT_Remove_Admin_Bar::init();
+} // cmt_removeAdminBarForSubscriber()
+add_action("after_setup_theme", "cmt_removeAdminBarForSubscriber");
