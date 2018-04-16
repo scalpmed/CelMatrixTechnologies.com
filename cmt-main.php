@@ -7,10 +7,19 @@
   Author: Duane Leem
   Author URI: https://duaneleem.com
   License: GPLv2+
-  Text Domain: dl-password-protect
+  Text Domain: cmt-main
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-  exit; // Exit if accessed directly
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+  exit;
 }
 
+/**
+ * Change login page logo from WP to CMT.
+ */
+function cmt_change_logo() {
+  require_once("includes/cmt-customize-login.php");
+  CMT_Customize_Login_Screen::init();
+}
+add_action("login_enqueue_scripts", "cmt_change_logo");
