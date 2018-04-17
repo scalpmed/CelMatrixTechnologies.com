@@ -3,7 +3,7 @@
   Plugin Name: CMT Main Configuration
   Plugin URI: https://github.com/scalpmed/cmt-main
   Description: Customizes WordPress in various of ways for CMT.
-  Version: 1.0
+  Version: 1.1
   Author: Duane Leem
   Author URI: https://duaneleem.com
   License: GPLv2+
@@ -32,3 +32,9 @@ function cmt_removeAdminBarForSubscriber() {
   CMT_Remove_Admin_Bar::init();
 } // cmt_removeAdminBarForSubscriber()
 add_action("after_setup_theme", "cmt_removeAdminBarForSubscriber");
+
+/**
+ * Redirect non-admins to Terms and Use.
+ */
+require_once("includes/cmt-redirect-subscriber.php");
+add_filter("login_redirect", "CMT_Redirect_Subscriber::init", 10, 3);
